@@ -1,0 +1,174 @@
+<?php
+/* @var $this SiteController */
+/* @var $model LoginForm */
+/* @var $form CActiveForm  */
+
+$this->pageTitle=Yii::app()->name . ' - Login';
+
+?>
+
+<div id="loginheader">Login</div>
+
+<div id="container">
+
+		<!--
+	<table style="width:100%;">
+
+		<td id="column" style="border-right:1px solid #EFEFEF;">
+			<div id="leftcontainer">			
+				<!--<h1>Login</h1>
+								
+				<p id="heading">Advantages</p>
+	
+				<ul>
+					<li> <p> Single Signon for multiple services </p> </li>
+	
+					<li> <p> News letter </p> </li>
+
+				</ul>
+
+				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/login.jpg" width="350px" height="250px"/>
+			</div>
+		</td>
+
+		<td id="column">
+			<div id="loginWidgetAligner">	
+				<div class="form">
+					<?php $form=$this->beginWidget('CActiveForm', array(
+						'id'=>'login-form',
+						'enableClientValidation'=>true,
+						'clientOptions'=>array(
+							'validateOnSubmit'=>true,
+						),
+					)); ?>
+
+					<div class="row">
+						<?php echo $form->labelEx($model,'username'); ?>
+						<?php echo $form->textField($model,'username'); ?>
+						<?php echo $form->error($model,'username'); ?>
+					</div>
+
+					<div class="row">
+						<?php echo $form->labelEx($model,'password'); ?>
+						<?php echo $form->passwordField($model,'password'); ?>
+						<?php echo $form->error($model,'password'); ?>
+		
+					</div>
+
+					<div class="row rememberMe">
+						<?php echo $form->checkBox($model,'rememberMe'); ?>
+						<?php echo $form->label($model,'rememberMe'); ?>
+						<?php echo $form->error($model,'rememberMe'); ?>
+					</div>
+					
+					<div class="row">
+						<span>Don't you have an account yet? <?php  echo CHtml::link('Sign Up',array('signup')) ?>
+
+					</div>
+
+					<div class="row buttons">
+						<?php echo CHtml::submitButton('Login'); ?>
+					</div>
+
+					<?php $this->endWidget(); ?>
+				</div><!-- form
+			</div>
+		</td>
+
+	</table>-->
+
+
+	<table>
+		<td>
+			<div id="leftcontainer">
+				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/login.jpg" width="350px" height="250px"/>
+			</div>
+		</td>
+
+		<td>
+			<div id="links"> 
+				<span> <?php  echo CHtml::link('Forgot Password',array('forgotpassword')) ?> </span>
+				<span> <?php  echo CHtml::link('Sign Up',array('signup')) ?> </span>
+
+			</div>
+
+			<div id="rightcontainer">
+				<div class="form">
+					<?php $form=$this->beginWidget('CActiveForm', array(
+						'id'=>'login-form',
+						'enableClientValidation'=>true,
+						'clientOptions'=>array(
+							'validateOnSubmit'=>true,
+						),
+					)); ?>
+
+					<div class="fieldaligner">
+						<table style="width:550px">
+							<td>
+								<?php echo $form->labelEx($model,'username'); ?>
+							</td>
+							<td>
+								<?php echo $form->textField($model,'username',array(
+									'class'=>'vtextfield',
+								)); ?>
+
+							</td>
+						</table>
+						<div style="margin-left:150px">						
+							<?php echo $form->error($model,'username'); ?>
+						</div>
+					</div>
+
+					<div class="fieldaligner">
+						<table style="width:550px">
+							<td>
+								<?php echo $form->labelEx($model,'password'); ?>
+							</td>
+							<td>
+								<?php echo $form->passwordField($model,'password',array(
+									'class'=>'vtextfield',
+								)); ?>
+							</td>
+						</table>
+						<div style="margin-left:150px">						
+							<?php echo $form->error($model,'password'); ?>
+						</div>
+					</div>
+
+					
+					<div class="fieldaligner">
+						<table style="width:300px;">
+							<td >
+								<?php echo $form->checkBox($model,'rememberMe',array(
+									'class'=>'vcheckbox',
+								)); ?>
+							</td>
+							<td>
+								<?php echo $form->labelEx($model,'rememberMe'); ?>
+								
+							</td>
+						</table>
+					</div>
+					<!--
+					<div class="row">
+						<span>Don't you have an account yet? <?php  echo CHtml::link('Sign Up',array('signup')) ?>
+						
+					</div>
+					-->
+					<div class="row buttons">
+						<span><?php echo CHtml::submitButton('Login',array(
+							'class'=>'loginbutton',
+							)); ?>
+						</span>
+						<!--<span><?php  echo CHtml::link('Forgot Password',array('forgot_password')) ?>-->
+					</div>
+
+					<?php $this->endWidget(); ?>
+				</div><!-- form-->
+			</div>
+		</td>
+
+	</table>
+
+</div>
+

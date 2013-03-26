@@ -1,0 +1,21 @@
+<?php
+
+class GuestEmailValidator extends CEmailValidator {
+
+	private $guestArray;
+
+	public function __construct($guestArray){
+		$this->guestArray = $guestArray;
+	}	
+
+	public function validate(){
+		$guestEmails = explode(',',$this->guestArray);
+		$error = "";
+		for($i = 0; $i < count($guestEmails); $i++){
+			if(!validateValue($guestEmails[$i])){
+				$error = $error . $guestEmails[$i] . " is not valid Email address \n";
+			}
+		}
+		return $error;
+	}
+}

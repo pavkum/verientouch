@@ -1,0 +1,105 @@
+#container{
+	width:80%;
+	height:500px;
+	margin-left:10%;
+	padding-top:2%;
+
+}
+
+#loginheader{
+	margin-left:0%;
+	height:30px;
+	font-style:bold;
+	font-size:20px;
+	background:black;
+	color:white;
+	padding-top:5px;
+	padding-left:10%;
+	
+}
+
+#heading{
+	font-size:25px;
+}
+
+#leftcontainer{
+	padding-top:15%;
+	height:300px;	
+	
+}
+
+#rightcontainer{
+	width:550px;
+	height:275px;
+	background:#EFEFEF;
+	border: 1px solid #EFEFEF;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+#links{
+	text-align:right;
+	cursor:pointer;
+	cursor:hand;
+	spacing:20px;
+}
+
+.fieldaligner{
+	width:100%;
+	padding-top:3%;
+	font-size:20px;
+
+}
+
+.vtextfield{
+	width:300px;
+	height:30px;
+	font-size:20px;
+}
+
+.vcheckbox{
+	width:20px;
+	height:20px;
+}
+
+.loginbutton{
+	width:80px;
+	height:30px;
+	background:#00CCFF;
+	color:white;
+	border: 1px solid #00CCFF;
+	padding:1px;
+	font-style:bold;
+	cursor: pointer;
+	cursor:hand;
+}
+
+#column{
+
+	width:50%;
+	height:400px;
+	
+	
+}
+
+#loginWidgetAligner{
+	
+	margin-left:20%;	
+	background: #EFEFEF;	
+	border:2px solid #EFEFEF;
+	width:70%;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+
+}
+
+.form{
+	width:80%;
+	margin-left:10%;
+	margin-top:5%;
+}
+
+.row{
+	//padding-top:10px;
+
+}

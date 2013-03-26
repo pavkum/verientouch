@@ -1,0 +1,203 @@
+<!-- This view renders current Month -->
+<!-- author Pavan -->
+
+<?php
+$num = cal_days_in_month(CAL_GREGORIAN, 2, 2000); // 31
+echo "There was $num days in August 2003";
+?>
+
+<div class="Month">
+
+	<table>
+		<th>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+
+		<th>
+
+		<tr>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+		</tr>
+
+		<tr>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+		</tr>
+
+		<tr>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+		</tr>
+
+		<tr>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+		</tr>
+
+		<tr>
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+			<td>
+
+			</td>
+
+		</tr>
+
+
+	</table>
+
+
+</div>

@@ -1,0 +1,7 @@
+$(document).ready(function () {
+
+	$('.eventTable').jScrollPane();
+	//$('.today-container').jScrollPane();
+	//$('.calendarbody').jScrollPane();
+
+});

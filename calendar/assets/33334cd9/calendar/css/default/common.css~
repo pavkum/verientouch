@@ -1,0 +1,49 @@
+.calendarHeaderInfo {
+	width:100%;
+	height:35px;
+	margin-bottom:1%;
+	border-top:1px solid #F2F2F2;
+	border-bottom:1px solid #F2F2F2;
+
+	font-style:bold;
+	font-size:15px;
+}
+
+.calendarHeaderInfo  table {
+	//width:100px;
+	margin-left:3%;
+	//border:1px solid black;
+	font-style:bold;
+	font-size:15px;
+}
+
+.calendarHeaderInfo td {
+	width:0px;
+	border-spacing:1px;
+	font-style:bold;
+	font-size:15px;
+	
+}
+
+.calendarHeaderControls {
+	border-spacing:0;
+}
+
+.controlButtons{
+	width:35px;
+	height:30px;
+	background:#F8F6F2;
+	border:1px solid #E6E3E3;
+	color:#707070;
+	font-style:bold;
+
+	-webkit-box-shadow:#FFF7F7 0 1px 0 0;
+	-moz-box-shadow:#FFF7F7 0 1px 0 0;
+	box-shadow:#FFF7F7 0 1px 0 0;
+}
+
+.controlButtons:hover {
+	background:#EEEBE7;
+	cursor:pointer;
+	cursor:hand;
+}

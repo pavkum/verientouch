@@ -1,0 +1,22 @@
+
+<?php
+
+	$this->widget('application.components.SevenDays',array(
+		'month'=>2,
+		'year'=>2013,
+		'eventHtmlOptions' => array(
+					'class' => 'EventColumn',
+					'style' => 'padding:0',
+					'cellspacing'=>'0',
+
+				),
+		'hourHtmlOptions' => array(
+					'class' => 'hourColumn',
+				),
+		'headerHtmlOptions' => array(
+					'class' => 'dayHeader',
+				),
+
+	));
+
+?>

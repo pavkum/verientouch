@@ -1,0 +1,151 @@
+<?
+
+class User {
+
+	private $userId;
+
+	private $defaultColor;
+
+	private $defaultTimezone;
+
+	private $calendars;
+
+	private $events;
+
+	private $startPointOfEvents;
+
+	private $endPointsOfEvents;
+
+	public function __construct(){
+		$this->calendars = array();
+		$this->events = array();
+		$this->startPointOfEvents = array();
+		$this->endPointsOfEvents = array();
+	}
+
+	public function setUserId($userId){
+		$this->userId = $userId;
+	}
+
+	public function getUserId(){
+		return $this->userId;
+	}
+
+	public function setDefaultColor($defaultColor){
+		$this->defaultColor = $defaultColor;
+	}
+
+	public function getDefaultColor(){
+		return $this->defaultColor;
+	}
+
+	public function setDefaultTimezone($timezone){
+		$this->defaultTimezone = $timezone;
+	}
+
+	public function getDefaultTimezone(){
+		return $this->defaultTimezone;
+	}
+
+	public function addCalendar($calendar){
+		$this->calendars[$calendar->getCalendarId()] = $calendar;
+	}
+
+	public function getCalendar($calendarId){
+		if(isset($this->calendars[$calendarId]))
+			return $this->calendars[$calendarId];
+
+		// It should never return null;
+		return null;
+	}
+
+	public function getCalendars(){
+
+		$calendarArray = array();
+
+		foreach($this->calendars as $calendar){
+			$calendarArray[$calendar->getCalendarId()] = $calendar->getCalendarName();
+		}		
+
+		return $calendarArray;
+	}
+
+	
+
+	public function addEvent($date,$event){
+		$eventOnParticularDay ;
+		if(!isset($this->events['"'.$date.'"'])){
+			$eventOnParticularDay = array();
+			$this->events['"'.$date.'"'] = $eventOnParticularDay;
+		}else{
+			$eventOnParticularDay = $this->events['"'.$date.'"'];
+		}
+		$eventOnParticularDay[$event->getEventId()] = $event;
+		$this->events['"'.$date.'"'] = $eventOnParticularDay;
+		$this->addEvent1($event);
+	}
+
+	public function addEvent1($event){
+		$this->events[$event->getEventId()] = $event;
+
+		$this->addStartPointOfEvent($event->getStartDate(),$event->getEventId());
+		$this->addEndPointOfEvent($event->getStartDate(),$event->getEventId());
+		
+		ksort($this->endPointOfEvents);
+	}
+
+	private function addStartPointOfEvent($startDate,$eventId){
+		$this->startPointOfEvents[$eventId] = $startDate;
+	}
+
+	private function addEndPointOfEvent($endDate,$eventId){
+		$this->endPointOfEvents[$endDate] = $eventId;
+	}
+
+	private function modifyEvent($event){
+		// Event should be present already
+		$this->events[$event->getEventId()] = $event;
+
+		$endDate = array_search($event->getEventId(),$this->endPointOfEvents);
+		// endDate cannot be null or empty
+		
+		$this->startPointOfEvents[$event->getEventId()] = $event->getStartDate();
+		$this->endPointOfEvents[$event->getEndDate()] = $event->getEventId();
+
+		ksort($this->endPointOfEvents);
+
+	}
+
+	private function removeEvent($eventId){
+		unset($this->events[$eventId]);
+
+		unset($this->startPointOfEvents[$eventId]);
+
+		$endDate = array_search($event->getEventId(),$this->endPointOfEvents);
+		unset($this->endPointOfEvents[$endDate]);
+
+		ksort($this->endPointOfEvents);
+	}
+
+	public function checkEventCount(){
+		Yii::trace('Event count : '.count($this->events),'session');
+			foreach ($this->events as $k => $v) {
+			    Yii::trace($k,'system.db');;
+			}
+	}
+
+	public function getEvent($date){
+
+		$events = array();
+		foreach($this->endPointOfEvents as $endDate => $eventId){
+			if($endDate >= $date && $this->startPointOfEvents[$eventId] < $date){
+				$event = $this->events[$eventId];
+				if($event->validate($date)){
+
+				}
+			}
+		}
+		return null;
+	}
+
+}

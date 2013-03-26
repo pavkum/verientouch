@@ -1,0 +1,23 @@
+<?php
+
+class CountryList{
+
+	public static function getCountryList(){
+		$countryArray = Yii::app()->db->createCommand()
+				->select('COUNTRY')
+				->from('country_list')
+				->queryAll();
+
+		$countries = array();
+
+		foreach($countryArray as $country){
+			array_push($countries, $country['COUNTRY']);
+			Yii::trace($country['COUNTRY'],"system.db");
+		}
+
+		return $countries;
+	}
+
+}
+
+

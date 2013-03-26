@@ -1,0 +1,187 @@
+<?php
+
+class CalendarSession {
+	
+	private static $USER_DETAILS_QUERY = 'SELECT USER_ID,CALENDAR,LOCATION FROM user_profile WHERE USER_NAME = :USER_NAME';
+
+	private static $UPDATE_QUERY = 'UPDATE user_profile SET CALENDAR = 1 WHERE USER_ID = :USER_ID';
+
+	private static $CALENDAR_QUERY = 'SELECT CALENDAR_ID,CALENDAR_NAME,CALENDAR_COLOR,TIMEZONE FROM calendar_data WHERE USER_ID = :USER_ID';
+
+	private static $EVENT_QUERY = 'SELECT EVENT_ID,EVENT_NAME,TIME,DATE,EVENT_TYPE,END_ON,END_AFTER,END_NEVER,EVENT_CRON,EVENT_PRIORITY,EVENT_COLOR FROM event_data WHERE CALENDAR_ID = :CALENDAR_ID';
+
+	public static function checkSession(){
+
+		$sessionUser = isset(Yii::app()->request->cookies['sessionUser']) ? Yii::app()->request->cookies['sessionUser']->value : 0;
+
+		if($sessionUser == 0)
+			CalendarSession::buildSession();
+
+
+		if(Yii::app()->session['CALENDAR'] == 1){
+			
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	private static function buildSession(){
+		Yii::trace('building session','system.db');
+		$cookie = new CHttpCookie('sessionUser', '0');
+		Yii::app()->request->cookies['sessionUser'] = $cookie;
+		
+		$connection = Yii::app()->db;
+		
+		$command = $connection->createCommand(self::$USER_DETAILS_QUERY);
+
+		$userName = Yii::app()->user->name;
+		$dataReader = $command->bindParam(':USER_NAME',$userName,PDO::PARAM_STR)->query();
+
+		$dataReader->bindColumn(1,$userId);
+		$dataReader->bindColumn(2,$calendar);
+		$dataReader->bindColumn(3,$location);
+
+		$readResult = $dataReader->read();
+
+		//Yii::trace('initial read result : '.$userId,'system.db');
+		// invalidate session if readResult is true
+
+		$user = new User;
+
+		$user->setUserId($userId);
+		$user->setDefaultTimezone($location);
+
+		$connection = Yii::app()->db_calendar;
+		$command = $connection->createCommand(self::$CALENDAR_QUERY);
+
+		$dataReader = $command->bindParam(':USER_ID',$userId,PDO::PARAM_INT)->query();
+
+		$dataReader->bindColumn(1,$calendarId);
+		$dataReader->bindColumn(2,$calendarName);
+		$dataReader->bindColumn(3,$calendarColor);
+		$dataReader->bindColumn(4,$calendarTimezone);
+
+		while($dataReader->read() != false){
+			$calendar = new Calendar;
+
+			$calendar->setCalendarId($calendarId);
+			$calendar->setCalendarName($calendarName);
+			$calendar->setCalendarTimezone($calendarTimezone);
+			$calendar->setCalendarColor($calendarColor);
+
+			$user->addCalendar($calendar);
+
+			$command = $connection->createCommand(self::$EVENT_QUERY);
+
+			$eventDataReader = $command->bindParam(':CALENDAR_ID',$calendarId,PDO::PARAM_INT)->query();
+
+			$eventDataReader->bindColumn(1,$eventId);
+			$eventDataReader->bindColumn(2,$eventName);
+			$eventDataReader->bindColumn(3,$time,PDO::PARAM_STR);
+			$eventDataReader->bindColumn(4,$date);
+			$eventDataReader->bindColumn(5,$eventType);
+			$eventDataReader->bindColumn(6,$endOn);
+			$eventDataReader->bindColumn(7,$endAfter);
+			$eventDataReader->bindColumn(8,$endNever);
+			$eventDataReader->bindColumn(9,$eventCron);
+			$eventDataReader->bindColumn(10,$eventPriority);
+			$eventDataReader->bindColumn(11,$eventColor);
+
+			//foreach($eventDataReader->read() as $row) { 
+
+			while($eventDataReader->read() !== false){
+
+
+
+				$event = new Event;
+				
+				$time = explode('|',$time);
+				$date = explode('|',$date);
+
+				$startTime = $time[0];
+				$endTime = $time[1];
+
+				$startDate = $date[0];
+				$endDate = $date[1];				
+
+				$event->setEventId($eventId);
+				$event->setEventName($eventName);
+				$event->setStartTime($startTime);
+				$event->setEndTime($endTime);
+				$event->setStartDate($startDate);
+				$event->setEndDate($endDate);
+				$event->setEventType($eventType);
+				$event->setEventCron($eventCron);
+				$event->setEndOn($endOn);
+				$event->setEndNever($endNever);
+				$event->setEndAfter($endAfter);
+				$event->setEventPriority($eventPriority);
+				$event->setEventColor($eventColor);
+				$event->setCalendarId($calendarId);
+
+				/*$eventArray = array(
+					'eventId'=>$eventId,
+					'event' => $event
+					);*/
+
+				//$calendar->addEvent($eventArray);
+
+				$user->addEvent($startDate,$event);
+
+				
+				//$eventDataReader->next();
+
+			//}
+			}
+
+			
+		}
+
+		Yii::app()->session['USER'] = $user;
+
+	}
+
+	private static function getEventBoundary($startTime,$endTime,$endOn,$endAfter,$endNever){
+		$startDate = date('Y-m-d',strtotime($event->getStartTime()));
+		$endDate ;
+		if($endOn === 1){
+			//$endDate = 
+		}
+
+
+	}
+
+	private static function getEndDate($startTime, $cron, $endAfter){
+
+
+	}
+
+	public static function firstTimeSetUp(){
+		$connection = Yii::app()->db;
+		$transaction = $connection->beginTransaction();
+		try{
+			$updateCommand = $connection->createCommand(self::$UPDATE_QUERY);
+
+			$userId = Yii::app()->session['USER_ID'];
+
+			$updateCommand->bindParam(":USER_ID",$userId,PDO::PARAM_INT);			
+
+			$updateCommand->execute();
+
+			$transaction->commit();
+
+			Yii::app()->session['CALENDAR'] = 1;
+
+			return true;
+
+		}catch(Exception $e){
+			Yii::log("FIRST_TIME_ERROR : ".Yii::app()->session['USER_ID'].$e,"system.db");
+			$transaction->rollback();
+			return false;
+		}
+
+		
+	}
+
+}

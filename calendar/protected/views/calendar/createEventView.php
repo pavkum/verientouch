@@ -1,0 +1,149 @@
+<?php
+
+	$this->pageTitle=Yii::app()->name . " - Create Event";
+
+?>
+
+<div id="createEvent" class="form">
+
+
+		<?php $form=$this->beginWidget('CActiveForm', array(
+			'id'=>'create-event-form',
+			'enableClientValidation'=>true,
+			'clientOptions'=>array(
+			'validateOnSubmit'=>true,
+			),
+		)); ?>
+
+		
+		<?php $this->endWidget(); ?>
+
+
+
+			<table class="createEventData">
+				<tr>
+				<td>
+				<?php echo $form->errorSummary($model); ?>
+				</td>
+				</tr>
+				
+				<tr>
+					<td> <?php echo $form->labelEx($model,'eventName',array('class'=>'vLabel')); ?> <td>
+
+					<td> <?php echo $form->textField($model,'eventName',array(
+						'class'=>'vtextfield',
+						)); ?>			
+
+					</td>
+				</tr>
+
+
+				<tr>
+					<td> <?php echo $form->labelEx($model,'startDate'); ?> <td>
+					<td>
+
+					<table cellspacing:0; cellpadding:0 style="border-spacing:0">
+					<tr><td>
+					<?php 
+					$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+    					'name'=>'startDate',
+					'attribute'=>'startDate',
+					'model'=>$model,
+					'value'=>$model->startDate,
+					    // additional javascript options for the date picker plugin
+					    'options'=>array(
+						    'showAnim'=>'fold',
+						     'showButtonPanel'=>false,
+   					 	     'autoSize'=>true,
+					             'dateFormat'=>'yy-mm-dd',
+					             'defaultDate'=>$model->startDate,	
+					    ),
+					    'htmlOptions'=>array(
+						'class'=>'vtextfield',
+					    'style'=>'width:125px'
+					    ),
+					));?>
+					</td><td>
+					<?php echo $form->dropDownList($model,'startTime',$model->getTime(),
+					array(
+						'empty'=>'Start Time',
+						'encode'=>1,
+						'disabled'=>0,
+						'promt'=>1,
+						'key'=>'a',
+						'class'=>'dropDownList'
+					)
+					); ?>
+					</td></tr>
+					</table>
+					</td>
+				</tr>
+
+<tr>
+					<td> <?php echo $form->labelEx($model,'startDate'); ?> <td>
+					<td>
+
+					<table cellspacing:0; cellpadding:0 style="border-spacing:0">
+					<tr><td>
+					<?php 
+					$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+    					'name'=>'endDate',
+					'attribute'=>'endDate',
+					'model'=>$model,
+					'value'=>$model->endDate,
+					    // additional javascript options for the date picker plugin
+					    'options'=>array(
+						    'showAnim'=>'fold',
+						     'showButtonPanel'=>false,
+   					 	     'autoSize'=>true,
+					             'dateFormat'=>'yy-mm-dd',
+					             'defaultDate'=>$model->endDate,	
+					    ),
+					    'htmlOptions'=>array(
+						'class'=>'vtextfield',
+					    'style'=>'width:125px'
+					    ),
+					));?>
+					</td><td>
+					<?php echo $form->dropDownList($model,'endTime',$model->getTime(),
+					array(
+						'empty'=>'End Time',
+						'encode'=>1,
+						'disabled'=>0,
+						'promt'=>1,
+						'key'=>'a',
+						'class'=>'dropDownList'
+					)
+					); ?>
+					</td></tr>
+					</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td> <?php echo $form->labelEx($model,'location'); ?> <td>
+
+					<td> <?php echo $form->textField($model,'location',array(
+						'class'=>'vtextfield',
+						)); ?>			
+
+					</td>
+				</tr>
+
+				<tr>
+					<td> <?php echo $form->labelEx($model,'attendies'); ?> <td>
+
+					<td> <?php echo $form->textField($model,'attendies',array(
+						'class'=>'vtextfield',
+						)); ?>			
+
+					</td>
+				</tr>
+				<tr><td>
+				<?php echo CHtml::submitButton('Sign Up',array(
+					'class'=>'vbutton',
+					)); ?>
+				</td></tr>
+			</table>
+
+</div>

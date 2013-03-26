@@ -1,0 +1,42 @@
+.Month {
+	margin-top:0px;
+}
+
+.Month table{
+	//border: 1px solid black;
+}
+
+.monthheader td{
+	text-align:center;
+	width:50px;
+	height:30px;
+	background:#BDBDBD;
+}
+
+.monthdays td{
+	text-align:left;
+	vertical-align:top;
+	width:50px;
+	height:70px;
+	
+}
+
+.presentMonthDays {
+	background:#FAFAFA;
+	color:#848484;
+	font-size:20px;
+}
+
+#today{
+	background:#FAFAFA;
+	color:#848484;
+	font-size:40px;
+	font-family:FreeSerif;
+}
+
+.previousMonthDays {
+	background:#F2F2F2;
+	color:#D8D8D8;
+	font-size:20px;
+}
+

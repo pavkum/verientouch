@@ -1,0 +1,32 @@
+<?php
+
+class Test {
+	
+	public function run() {
+
+		$zero = '00';
+		$thirty = '30';
+
+		$absoluteHour = 00;
+		$relativeHour = 12;
+
+		for($i=0; $i<24; $i++){
+			$value = "";
+			
+			if($i % 2 == 0){
+				$value = $value . "'" . $absoluteHour . ":" .$zero . "'" . "=>" . "'" . $relativeHour . ":" .$zero ."PM',\n";
+			}else{
+				$value = $value . "'" . $absoluteHour . ":" .$thirty . "'" . "=>" . "'" . $relativeHour . ":" .$thirty ."PM',\n";
+				$absoluteHour++;
+				$relativeHour++;
+			}
+
+			echo $value;
+
+		}
+	}
+
+}
+
+	$test = new Test;
+	$test->run();

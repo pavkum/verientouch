@@ -1,0 +1,107 @@
+<?php
+
+class Test {
+
+	private static $TOTAL_DAYS_IN_WEEK = 7;
+
+	public static $SUNDAY = 1;
+
+	public static $MONDAY = 2;
+
+	public static $TUESDAY = 3;
+
+	public static $WEDNESDAY = 4;
+
+	public static $THURSDAY = 5;
+
+	public static $FRIDAY = 6;
+
+	public static $SATURDAY = 7;
+
+	public static $SUNDAY_TEXT = "sunday";
+
+	public static $MONDAY_TEXT = "monday";
+
+	public static $TUESDAY_TEXT = "tuesday";
+
+	public static $WEDNESDAY_TEXT = "wednesday";
+
+	public static $THURSDAY_TEXT = "thursday";
+
+	public static $FRIDAY_TEXT = "friday";
+
+	public static $SATURDAY_TEXT = "saturday";
+
+	public static $LAST = "last ";
+
+	public static $NEXT = "next ";
+
+	public static $TODAY = "today";
+
+	public function getThisWeek(){
+		$dayIndex = $this->getPresentDaysPosition();
+
+		$totalNumberOfRemainingDays = self::$TOTAL_DAYS_IN_WEEK - $dayIndex;
+
+		$totalNumberOfPreviousDays = self::$TOTAL_DAYS_IN_WEEK - $totalNumberOfRemainingDays;
+
+		$this->getPreviousDaysOfTheWeek($totalNumberOfPreviousDays);
+		$this->getRemainingDaysOfTheWeek($totalNumberOfPreviousDays);
+	}
+
+	private function getPresentDaysPosition(){
+		return date('w') + 1;
+	}
+
+	private function getPreviousDaysOfTheWeek($totalNumberOfPreviousDays){
+		for($i = 1; $i < $totalNumberOfPreviousDays; $i++) {
+			echo date('d-M-Y',strtotime(self::$LAST. self::getDayNames($i)))."\n";
+		}		
+		echo date('d-M-Y',strtotime(self::$TODAY))."\n";
+	}
+
+	private function getRemainingDaysOfTheWeek($totalNumberOfPreviousDays){
+		for($i = $totalNumberOfPreviousDays+1; $i <= self::$TOTAL_DAYS_IN_WEEK; $i++) {
+			echo date('d-M-Y',strtotime(self::$NEXT. self::getDayNames($i)))."\n";
+		}
+	}
+
+	private static function getDayNames($dayIndex) {
+		
+		switch($dayIndex) {
+			case self::$SUNDAY    :  return self::$SUNDAY_TEXT;
+					   	 break;
+
+			case self::$MONDAY    :  return self::$MONDAY_TEXT;
+					  	 break;
+
+			case self::$TUESDAY   :  return self::$TUESDAY_TEXT;
+					  	 break;
+
+			case self::$WEDNESDAY :  return self::$WEDNESDAY_TEXT;
+					 	 break;
+
+			case self::$THURSDAY  :  return self::$THURSDAY_TEXT;
+					  	 break;
+
+			case self::$FRIDAY    :  return self::$FRIDAY_TEXT;
+                                          	 break;
+	
+			case self::$SATURDAY  :  return self::$SATURDAY_TEXT;
+					  	 break;
+
+		
+		}
+	}
+
+}
+
+	$instance = new Test;
+
+	$instance->getThisWeek();
+	
+	/*
+	$previousdate = strtotime('last sunday');
+
+	echo $date.":".$previousdate."\n";*/
+?>

@@ -1,0 +1,63 @@
+
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+.modal {
+	position:absolute;
+	width:50%;
+	margin-left:25%;
+	background:#F2F2F2;
+   	border-radius:14px;
+	padding:8px;
+	#opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.content {
+	position:relative;
+	width:98%;
+	margin-left:1%;
+	border-radius:8px;
+	background:#fff;
+}
+
+#firstTimeLoginHeader{
+	height:10%;
+	padding-top:5px;
+	color:#EC020A;
+	border-top-right-radius:8px;
+	border-top-left-radius:8px;
+	-moz-border-radius-topright:8px; 
+	-moz-border-radius-topleft:8px; 
+	font-style:bold;
+	font-size:25px;
+}
+
+#data{
+	width:80%;
+	margin-left:10%;
+}
+
+#data table{
+	width:100%;
+	height:100%;
+	//margin-left:10%;
+	border-spacing:5px;
+}
+
+#data table tr {
+	border-spacing:1px;
+}
+
+#data table td {
+	width:33%;
+	//border:1px solid black;
+}

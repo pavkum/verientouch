@@ -1,0 +1,354 @@
+<?php
+
+class Week extends CWidget {
+	
+	private static $TOTAL_DAYS_IN_WEEK = 7;
+
+	private static $SUNDAY = 1;
+
+	private static $MONDAY = 2;
+
+	private static $TUESDAY = 3;
+
+	private static $WEDNESDAY = 4;
+
+	private static $THURSDAY = 5;
+
+	private static $FRIDAY = 6;
+
+	private static $SATURDAY = 7;
+
+	private static $SUNDAY_TEXT = "sunday";
+
+	private static $MONDAY_TEXT = "monday";
+
+	private static $TUESDAY_TEXT = "tuesday";
+
+	private static $WEDNESDAY_TEXT = "wednesday";
+
+	private static $THURSDAY_TEXT = "thursday";
+
+	private static $FRIDAY_TEXT = "friday";
+
+	private static $SATURDAY_TEXT = "saturday";
+
+	private static $LAST = "last ";
+
+	private static $NEXT = "next ";
+
+	private static $TODAY = "today";
+
+	private static $AM = ' AM';
+
+	private static $PM = ' PM';
+
+	private $events;
+
+	public $user;
+
+	public $themeUrl;
+
+	public $scriptUrl;
+
+	public $scriptFile = array(
+				'jquery.jscrollpane.min.js',
+				'jquery.mousewheel.js',
+				'week.js',
+				'applystyle.js',
+				);
+
+	public $cssFile = array(
+				'week.css',
+				'common.css',
+				'jquery.jscrollpane.css',
+				);
+
+	public $theme = 'default';
+
+	public function init()
+	{
+		$this->resolvePackagePath();		
+		$this->registerCoreScripts();
+		$this->events = array();
+		parent::init();
+	}
+
+	protected function resolvePackagePath(){
+		if($this->scriptUrl===null || $this->themeUrl===null)
+		{
+			$cs=Yii::app()->getClientScript();
+			if($this->scriptUrl===null)
+				$this->scriptUrl=$cs->getCoreScriptUrl().'/calendar/js';
+			if($this->themeUrl===null)
+				$this->themeUrl=$cs->getCoreScriptUrl().'/calendar/css';
+		}
+	}
+
+	protected function registerCoreScripts(){
+		$cs=Yii::app()->getClientScript();
+		if(is_string($this->cssFile))
+			$cs->registerCssFile($this->themeUrl.'/'.$this->theme.'/'.$this->cssFile);
+		elseif(is_array($this->cssFile))
+		{
+			foreach($this->cssFile as $cssFile)
+				$cs->registerCssFile($this->themeUrl.'/'.$this->theme.'/'.$cssFile);
+		}
+
+		if(is_string($this->scriptFile))
+			$this->registerScriptFile($this->theme.'/'.$this->scriptFile);
+		elseif(is_array($this->scriptFile))
+		{
+			foreach($this->scriptFile as $scriptFile)
+				$this->registerScriptFile($this->theme.'/'.$scriptFile);
+		}
+	}
+
+	protected function registerScriptFile($fileName,$position=CClientScript::POS_HEAD){
+		Yii::app()->getClientScript()->registerScriptFile($this->scriptUrl.'/'.$fileName,$position);
+	}
+
+	public function run() {
+		$this->render();
+	}
+
+	public function render() {
+		echo CHtml::openTag('div',array('class'=>'week-container'));
+			$this->renderControls();
+			$this->addDateHeader();
+			$this->addEventData();
+			$this->applyEvents();
+		echo CHtml::closeTag('div');
+	}
+	
+	private function applyEvents(){
+		if($this->events != null){
+
+			foreach($this->events as $events){
+				if($events != null){
+
+				foreach($events as $event){
+					$eventStartTime = strtotime($event->getStartTime());
+					$eventEndTime = strtotime($event->getEndTime());
+
+					$eventName = $event->getEventName();
+					$eventColor = $event->getEventColor();
+
+					if($eventColor === 0){
+						$calendarId = $event->getCalendarId();
+						$eventColor = $this->user->getCalendar($calendarId)->getCalendarColor();
+					}
+
+					echo "<script>applyStyle(".$eventStartTime . "," . $eventEndTime . ",\"" . $eventName . "\",\"" . $eventColor . "\");</script>";
+
+				}
+				}
+
+			}
+		}
+
+	}
+
+	private function addDateHeader() {
+		
+		$dates = self::getThisWeek('d-M-Y');
+
+		echo CHtml::openTag('table',array('class'=>'dateHeader'));
+		echo CHtml::openTag('tr');
+
+			echo CHtml::openTag('td',array('class'=>'hourSpecifier','id'=>'filler'));
+
+			echo CHtml::closeTag('td');
+			$this->user->checkEventCount();
+			for($i=0; $i<7; $i++){
+				echo CHtml::openTag('td',array('class'=>'eventSpecifier','id'=>'date'));
+				echo $dates[$i];
+				$date = date('Y-m-d',strtotime($dates[$i]));
+				//Yii::trace('"'.$date.'"','date');
+				$events = $this->user->getEvent('"'.$date.'"');
+				//Yii::trace($events,'events');
+				$this->events[$date] = $events;
+				echo CHtml::closeTag('td');
+			}
+
+			echo CHtml::openTag('td',array('class'=>'eventMargin','id'=>'filler'));
+
+			echo CHtml::closeTag('td');
+
+		echo CHtml::closeTag('tr');
+		echo CHtml::closeTag('table');
+	}
+
+
+	private function addEventData() {
+		echo CHtml::openTag('div',array('class'=>'eventTable'));
+		echo CHtml::openTag('table');
+
+		$dates = self::getThisWeek('d-m-Y');
+
+		for($i=0; $i<24; $i++){
+
+			echo CHtml::openTag('tr');
+
+			echo CHtml::openTag('td',array('class'=>'hourSpecifier','id'=>'hourData'));
+				echo self::get24hourFormattedHour($i);
+			echo CHtml::closeTag('td');
+
+
+			for($j=0; $j<7; $j++){
+				echo CHtml::openTag('td',array('class'=>'eventSpecifier','id'=>'eventData'));
+				$date = $dates[$j];
+				echo CHtml::openTag('table');
+
+				$time = strtotime($date . " " . $i . ":00:00");
+
+				echo CHtml::openTag('tr',array('style'=>'height:50%'));
+					echo CHtml::openTag('td');
+					echo CHtml::openTag('table',array('style'=>'padding:0;border-spacing:0;margin:0'));
+
+					echo CHtml::openTag('tr',array('id'=>$time,'style'=>'height:50%'));
+					echo CHtml::closeTag('tr');
+
+					echo CHtml::closeTag('table');
+					echo CHtml::closeTag('td');
+				echo CHtml::closeTag('tr');
+				
+				$time = strtotime($date . " " . $i . ":30:00");
+				echo CHtml::openTag('tr',array('style'=>'height:50%'));
+					echo CHtml::openTag('td');
+					echo CHtml::openTag('table',array('style'=>'padding:0;border-spacing:0;margin:0'));
+
+					echo CHtml::openTag('tr',array('id'=>$time,'style'=>'height:50%'));
+					echo CHtml::closeTag('tr');
+
+					echo CHtml::closeTag('table');
+					echo CHtml::closeTag('td');
+				echo CHtml::closeTag('tr');
+			echo CHtml::closeTag('table');
+
+				echo CHtml::closeTag('td');
+			}
+
+			echo CHtml::closeTag('tr');
+		}
+
+		echo CHtml::closeTag('table');
+		echo CHtml::closeTag('div');
+	}
+
+	private static function get24hourFormattedHour($hour) {
+		
+		$meridian = "";		
+		
+		if($hour > 11){
+			$meridian = self::$PM;
+
+				if($hour == 12)
+					return $hour . $meridian;
+				else
+					return ($hour % 12) . $meridian; 
+
+		}else {
+			$meridian = self::$AM;
+				if($hour == 0)
+					return 12 . $meridian;
+				else
+					return $hour . $meridian; 
+		}
+
+
+	}
+
+
+	private static function getThisWeek($format){
+		$dayIndex = self::getPresentDaysPosition($format);
+		
+		$totalNumberOfRemainingDays = self::$TOTAL_DAYS_IN_WEEK - $dayIndex;
+
+		$totalNumberOfPreviousDays = self::$TOTAL_DAYS_IN_WEEK - $totalNumberOfRemainingDays;
+		
+		$dates = array();
+
+		$previousDates = self::getPreviousDaysOfTheWeek($totalNumberOfPreviousDays,$format);
+
+		$remainingDates = self::getRemainingDaysOfTheWeek($totalNumberOfPreviousDays,$format);
+
+		return array_merge($previousDates, $remainingDates);
+	}
+
+	private static function getPresentDaysPosition(){
+		return date('w') + 1;
+	}
+
+	private static function getPreviousDaysOfTheWeek($totalNumberOfPreviousDays,$format){
+		$dates = array();		
+		for($i = 1; $i < $totalNumberOfPreviousDays; $i++) {
+			$dates[$i] = date($format,strtotime(self::$LAST. self::getDayNames($i)));
+
+		}		
+		$dates[$i] = date($format,strtotime(self::$TODAY));
+		return $dates;
+
+	}
+
+	private static function getRemainingDaysOfTheWeek($totalNumberOfPreviousDays,$format){
+		$dates = array();
+		for($i = $totalNumberOfPreviousDays+1; $i <= self::$TOTAL_DAYS_IN_WEEK; $i++) {
+			$dates[$i] = date($format,strtotime(self::$NEXT. self::getDayNames($i)));
+
+		}
+		return $dates;
+	}
+
+	private static function getDayNames($dayIndex) {
+		
+		switch($dayIndex) {
+			case self::$SUNDAY    :  return self::$SUNDAY_TEXT;
+					   	 break;
+
+			case self::$MONDAY    :  return self::$MONDAY_TEXT;
+					  	 break;
+
+			case self::$TUESDAY   :  return self::$TUESDAY_TEXT;
+					  	 break;
+
+			case self::$WEDNESDAY :  return self::$WEDNESDAY_TEXT;
+					 	 break;
+
+			case self::$THURSDAY  :  return self::$THURSDAY_TEXT;
+					  	 break;
+
+			case self::$FRIDAY    :  return self::$FRIDAY_TEXT;
+                                          	 break;
+	
+			case self::$SATURDAY  :  return self::$SATURDAY_TEXT;
+					  	 break;
+
+		
+		}
+	}
+
+	private function renderControls() {
+		
+		echo CHtml::openTag('table',array('class'=>'calendarHeaderInfo'));
+		echo CHtml::openTag('tr');
+
+			echo CHtml::openTag('td');
+				echo CHtml::button('<',array(
+							'class'=>'controlButtons',
+							));
+			echo CHtml::closeTag('td');
+
+			echo CHtml::openTag('td');
+				echo CHtml::button('>',array(
+							'class'=>'controlButtons',
+							));
+				echo CHtml::closeTag('td');
+			
+		echo CHtml::closeTag('tr');			
+		echo CHtml::closeTag('table');
+		
+	}
+
+}
+
+?>

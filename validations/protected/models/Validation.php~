@@ -1,0 +1,16 @@
+<?php
+
+/*
+ *
+ * Author : Pavan
+ *
+ */	
+
+class Validation {
+
+
+	public function verifyAuthorizationKey($key){
+		return EmailValidator::validate($key);
+	}
+
+}

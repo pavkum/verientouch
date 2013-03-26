@@ -1,0 +1,156 @@
+#container{
+	width:80%;
+	margin-left:10%;
+	padding-top:2%;
+	
+}
+
+
+#signupheader{
+	margin-left:0%;
+	height:30px;
+	font-style:bold;
+	font-size:20px;
+	background:black;
+	color:white;
+	padding-top:5px;
+	padding-left:10%;
+	
+}
+
+#signupform{
+	width:90%;
+	margin:0 auto;
+	align:center;
+}
+
+.errorDisplay{
+	margin-left:50%;
+}
+
+.spacer{
+	height:10px;
+}
+
+.signuptable{
+	width:100%;
+	margin:0 auto;
+}
+
+.section table td{
+	width:100%;
+}
+
+.signupcaptcha{
+	width:100%;
+	margin:0 auto;
+	padding-left:5%;
+}
+
+.signupbutton{
+	margin-left:65%;
+}
+
+
+
+DIV#content DIV.compactRadioGroup {
+    padding-left: 1em;
+}
+
+DIV#content .compactRadioGroup LABEL,
+DIV#content .compactRadioGroup INPUT {
+    display: inline;
+}
+
+.vradio{
+	margin:0;
+	padding:0;
+	border:1px solid black;
+}
+
+.submitbutton{
+	width:80px;
+	height:30px;
+	background:#00CCFF;
+	color:white;
+	border: 1px solid #00CCFF;
+	padding:1px;
+	font-style:bold;
+	cursor: pointer;
+	cursor:hand;
+}
+
+.section {
+	width:70%;
+	margin-left:15%;
+	margin-top:5%;
+}
+
+.sectionHeading{
+	font-size:25px;
+	color:#ABABAB;
+}
+
+.section hr{
+	width:100%;
+	background:#ABABAB;
+}
+
+.section table{
+	margin-left:5%;
+	width: 80%;
+	padding-top: 10px;
+}
+
+.section table td {
+	width:100%;
+}
+
+.signuptable td{
+	padding-left:30px;
+	width : 50%;
+	margin:0 auto;
+}
+
+.captcha{
+	background:#CEECF5;
+	width: 70%;
+	margin:0 auto;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+
+}
+
+.captchaButton{
+	color:white;	
+	background:grey;
+	border: 1px solid grey;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	cursor:pointer;
+	cursor:hand;
+}
+
+.sectionSeparator{
+	height: 20px;
+
+}
+
+
+
+.vtextfield{
+	width:250px;
+	height:25px;
+	border:1px solid #717274;
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	background:white;
+	font-size:20px;
+
+}
+
+.vdropdownlist{
+	padding-left:1em;
+	width:250px;
+}
+

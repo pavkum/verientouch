@@ -1,0 +1,32 @@
+<?php
+/* @var $this SiteController */
+
+$this->pageTitle=Yii::app()->name . ' - About';
+
+?>
+
+<div id="wrapper">
+	<div id="about">
+		<h1>About</h1>
+	
+		<p>Verientouch born on January 22nd 2013. We are a small team from Bangalore, India. We wish to enrich the lives of people by 				providing services and tools for day to day activities. 		
+		<p>
+		<div id="seperator"></div>
+		
+		<h1> Our Team </h1>
+		
+		<table class="developerInfoTable">
+			<td class="developerPhoto">
+				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/pavan.jpg" width="75px" height="70px" alt="Pavan Kumar L"/>
+			</td>
+
+			<td>
+				<span class="developerInfo">
+					<p>Pavan graduated from M S Ramaiah Institute of Technology in June 2011 from Electronics and 						Communications. Now he is working as Senior Software Engineer at Comviva Technologies. </p>
+
+				</span>
+			</td>
+
+		</table>
+	</div>
+</div>

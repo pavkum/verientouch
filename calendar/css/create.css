@@ -1,0 +1,186 @@
+#create-container {
+	width:90%;
+	height:400px;
+	margin-left:5%;
+	margin-top:1%;
+	
+}
+
+
+.borderedRow {
+	width:80%;
+	margin-left:10%;
+	margin-bottom:1%;
+	border-bottom:1px solid #ccc;
+}
+
+
+#rowHeader{
+	height:40px;
+	font-size:20px;
+	color:#EC020A;
+	font-style:bold;
+}
+
+#rowControls{
+	height:40px;
+	padding-bottom:5px;
+}
+
+#rowBody{
+	height:300px;
+	margin:0 auto;
+}
+
+.createButtons{
+	align:right;
+	width:100px;
+	height:30px;
+	background:white;
+	border:1px solid #ccc;
+}
+
+.createButtons:hover{
+	cursor:pointer;
+	cursor:hand;
+}
+
+.tabbody {
+	width:70%;
+	margin-left:20%;
+}
+
+#event table {
+	border-spacing:10px;
+}
+
+#repeat table {
+	border-spacing:10px;
+}
+
+#guest table {
+	border-spacing:10px;
+}
+
+#advanced table {
+	border-spacing:10px;
+}
+
+.repeatEvent{
+	width:500px;
+	border-spacing:10px;
+}
+
+.removeButton {
+	
+	font:10px;
+	color:red;
+	background:#ddd;
+
+	border:1px solid #ddd;
+
+	text-align : center;
+	
+	border-radius:10px ;
+	-webkit-border-radius:10px;
+	
+}
+
+.removeButton:hover {
+	cursor:pointer;
+	cursor:hand;
+
+	border-radius:10px ;
+	-webkit-border-radius:10px;
+	background:#ccc;
+}
+
+#userEmail {
+	width:400px;
+	margin-top:3%;
+	margin-left: 10%;
+}
+
+#userRemainder{
+	width:400px;
+	margin-top:3%;
+	margin-left:10%;
+}
+
+ .userRemainderRow{
+	height:30px;
+	font-size: 15px;
+	font-style:normal;
+}
+
+.userEmailRow{
+	height:30px;
+	font-size: 15px;
+	font-style:normal;
+}
+
+.userRemainderColumn{
+	width:100px;
+	border-spacing:5px;
+}
+
+.userEmailColumn{
+	width:225px;
+}
+
+.userAddTable{
+	width: 500px;
+}
+
+.vTextField{
+	width:400px;
+	height:30px;
+	font-size:25px;
+	border:1px solid #ccc;
+
+}
+
+.vButton{
+	width:50px;
+	height:30px;
+	color:#707070;
+	background:#F2F2F2;
+	border:1px solid #F2F2F2;
+}
+
+.vButton:hover{
+	cursor:pointer;
+	cursor:hand;
+}
+
+.eventColorChooser{
+	width:20px;	
+	height:20px;
+}
+
+.eventColorChooser:hover{
+	cursor:hand;
+	cursor:pointer;
+}
+
+.advanced {
+	width: 400px;
+	border-spacing: 10px;
+}
+
+#rowSubmit{
+	width:80%;
+	margin-left:10%;
+	margin-top:1%;
+}
+
+#rowSubmit table {
+	width:100%;
+}
+
+#rowSubmit td {
+	float:right;
+}
+
+
+

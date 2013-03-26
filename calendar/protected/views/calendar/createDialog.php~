@@ -1,0 +1,193 @@
+<?php
+
+	$this->pageTitle=Yii::app()->name . " - Create Event";
+
+	Yii::app()->getClientScript()->registerCoreScript('yii');
+	
+	Yii::app()->getClientScript()->registerScriptFile(Yii::app()->getClientScript()->getCoreScriptUrl().'/jshashset.js',CClientScript::POS_HEAD);
+
+	Yii::app()->getClientScript()->registerScriptFile(Yii::app()->getClientScript()->getCoreScriptUrl().'/jshashtable-2.1.js',CClientScript::POS_HEAD);
+
+
+?>
+<script>
+	$('.calendarHeaderPanel').hide();
+</script>
+
+<div id="create-container" class="form">
+
+	<?php $form=$this->beginWidget('CActiveForm', array(
+			'id'=>'create-event-form',
+			'enableClientValidation'=>false,
+			'clientOptions'=>array(
+			'validateOnSubmit'=>true,
+			),
+			//'htmlOptions' => array('onSubmit'=>'preventDefault()'),
+		)); ?>
+
+
+	<div class="borderedRow" id="rowHeader" >
+		Create Event
+	</div>
+
+	<div class="borderedRow" id="rowControls">
+
+		<table>
+			
+			<tr>
+				<td> <?php echo CHtml::button('Event',array(
+						'class'=>'createButtons',
+						'onclick'=>'showEvent()'
+					)); ?> </td>
+
+				<script>
+					function showEvent() {
+						$('#event').show();
+						$('#repeat').hide();
+						$('#guest').hide();
+						$('#remainder').hide();
+						$('#advanced').hide();
+					}
+				</script>
+
+		
+				<td> <?php echo CHtml::button('Repeat',array(
+						'class'=>'createButtons',
+						'onclick'=>'showRepeat()'
+					)); ?> </td>
+
+				<script>
+					function showRepeat() {
+						$('#event').hide();
+						var startTime = document.getElementById('startTime');
+						$('#startsOnId').val($('#startDate').val() + " " + startTime.options[startTime.selectedIndex].text);
+						$('#repeat').show();
+						$('#guest').hide();
+						$('#remainder').hide();
+						$('#advanced').hide();
+					}
+				</script>
+
+				<td> <?php echo CHtml::button('Guests',array(
+						'class'=>'createButtons',
+						'onclick'=>'showGuest()',
+					)); ?> </td>
+
+				<script>
+					function showGuest() {
+						$('#event').hide();
+						$('#repeat').hide();
+						$('#guest').show();
+						$('#remainder').hide();
+						$('#advanced').hide();
+					}
+				</script>
+
+				<td> <?php echo CHtml::button('Remainder',array(
+						'class'=>'createButtons',
+						'onclick'=>'showRemainder()',
+					)); ?> </td>
+
+				<script>
+					function showRemainder() {
+						$('#event').hide();
+						$('#repeat').hide();
+						$('#guest').hide();
+						$('#remainder').show();
+						$('#advanced').hide();
+					}
+				</script>
+
+		
+				<td> <?php echo CHtml::button('Advanced',array(
+						'class'=>'createButtons',
+						'onclick'=>'showAdvanced()'
+					)); ?> </td>
+
+				<script>
+					function showAdvanced() {
+						$('#event').hide();
+						$('#repeat').hide();
+						$('#guest').hide();
+						$('#remainder').hide();
+						$('#advanced').show();
+					}
+				</script>
+
+			</tr>
+
+			<tr>
+				<!--<?php echo $form->errorSummary($model); ?>-->
+			</tr>
+
+		</table>
+	</div>
+
+	<script>
+		$('#event').hide();
+		$('#repeat').hide();
+		$('#guest').hide();
+		$('#remainder').hide();
+		$('#advanced').hide();
+	
+	</script>
+
+	<div class="borderedRow" id="rowBody">
+
+		<div class="tabbody" id="event">
+			<?php $this->renderPartial('event',array('model'=>$model,'form'=>$form),false,true); ?>
+		</div>
+
+		<div class="tabbody" id="repeat">
+			<?php $this->renderPartial('repeat',array('model'=>$model,'form'=>$form),false,true); ?>
+		</div>
+
+		<div class="tabbody" id="guest">
+			<?php $this->renderPartial('guest',array('model'=>$model,'form'=>$form),false,true); ?>
+		</div>
+
+		<div class="tabbody" id="remainder">
+			<?php $this->renderPartial('remainder',array('model'=>$model,'form'=>$form),false,true); ?>
+		</div>
+
+		<div class="tabbody" id="advanced">
+			<?php $this->renderPartial('create/advanced',array('model'=>$model,'form'=>$form),false,true); ?>
+		</div>
+
+
+	</div>
+
+	<script>
+		$('#event').show();
+		$('#repeat').hide();
+		$('#guest').hide();
+		$('#remainder').hide();
+		$('#advanced').hide();
+	
+	</script>
+
+
+	<div id="rowSubmit">
+
+	<table><tr>
+		
+		<td> <?php echo CHtml::submitButton('Create',array(
+					'class'=>'submitButton',
+					'id' => 'createEventId',
+					'onsubmit' => 'validateEventTime()',
+		)); ?> </td>
+		
+		<td><?php echo CHtml::button ('Close', array('submit' => array('site/index'),
+							'class'=>'createButtons',
+			));?> 
+		</td>
+
+		
+		
+	</tr></table>
+	</div>
+	
+
+	<?php $this->endWidget(); ?>
+
+</div>

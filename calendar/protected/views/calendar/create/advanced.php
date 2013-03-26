@@ -1,0 +1,125 @@
+<table class="advanced">
+	<script>
+		var lastChoosenColorID = "";
+	</script>
+	<tr>
+
+		<td> <?php echo $form->labelEx($model,'eventPriority'); ?> <td>
+
+		<td>
+			<?php echo $form->dropDownList($model,'eventPriority',$model->getEventPriority(),
+				array(
+					'empty'=>'Priority',
+					'encode'=>1,
+					'disabled'=>0,
+					'promt'=>1,
+					'class'=>'dropDownList'
+				)
+			); ?>
+		</td>
+
+	</tr>
+
+
+	<tr>
+
+		<td> <?php echo $form->labelEx($model,'eventColor'); ?> <td>
+
+		<td>
+			<table>
+				<tr>
+					<?php echo $form->hiddenField($model,'eventColor',array('id'=>'eventColor')); ?>
+				</tr>
+
+				<tr>
+
+					<?php 
+						$colors = $model->getColors();
+
+						foreach($colors as $color){
+							echo CHtml::openTag('td');
+								echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:#'.$color.';border:1px solid #'.$color.';',
+									'onclick' => 'choosenColor(\''.$color.'\')',
+									'id' => $color,
+								));
+							echo CHtml::closeTag('td');
+						}
+				
+					?>
+
+					<!--
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:red;border:1px solid red',
+									'onclick' => 'choosenColor(\'red\')',
+									'id' => 'red',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:green;border:1px solid green',
+									'onclick' => 'choosenColor(\'green\')',
+									'id' => 'green',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:cyan;border:1px solid cyan',
+									'onclick' => 'choosenColor(\'cyan\')',
+									'id' => 'cyan',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:gold;border:1px solid gold',
+									'onclick' => 'choosenColor(\'gold\')',
+									'id' => 'gold',
+								)); ?> </td>
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:greenyellow;border:1px solid greenyellow',
+									'onclick' => 'choosenColor(\'greenyellow\')',
+									'id' => 'greenyellow',
+								)); ?> </td>
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:lightgray;border:1px solid lightgray',
+									'onclick' => 'choosenColor(\'lightgray\')',
+									'id' => 'lightgray',
+								)); ?> </td>
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:purple;border:1px solid purple',
+									'onclick' => 'choosenColor(\'purple\')',
+									'id' => 'purple',
+								)); ?> </td>
+
+				</tr>
+				-->
+
+				<script>
+					function choosenColor(color){
+						$("#"+color).css("-webkit-box-shadow","2px 2px 2px 2px #ccc");
+						$("#"+color).css("-moz-box-shadow","2px 2px 2px 2px #ccc");
+						$("#"+color).css("box-shadow","2px 2px 2px 2px #ccc");
+						lastChoosenColorID = $('#eventColor').val();
+
+						if(lastChoosenColorID != color && lastChoosenColorID != ""){
+							$("#"+lastChoosenColorID).css("-webkit-box-shadow","");
+							$("#"+lastChoosenColorID).css("-moz-box-shadow","");
+							$("#"+lastChoosenColorID).css("box-shadow","");
+						}
+
+						$('#eventColor').val(color);
+
+					}
+				</script>
+
+			</table>
+		</td>
+
+	</tr>
+
+</table>

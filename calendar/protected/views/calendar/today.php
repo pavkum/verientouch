@@ -1,0 +1,12 @@
+
+<?php
+
+	$this->widget('application.components.Today',array(
+		'timestamp'=>$timestamp,
+		'user'=> Yii::app()->session['USER'],
+		//'month'=>'Feb',
+		//'year'=>2013,
+		//'date'=>20,
+	));
+
+?>

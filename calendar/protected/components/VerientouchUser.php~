@@ -1,0 +1,21 @@
+<?php
+
+class VerientouchUser extends CWebUser{
+  	
+	 /* public $identityCookie = array(
+	        'path' => '/',
+	        'domain' => 'localhost.',
+	    );
+	*/
+	 public function init(){
+
+	        $conf = Yii::app()->session->cookieParams;
+	        $this->identityCookie = array(
+	            'path' => $conf['path'],
+	            'domain' => $conf['domain'],
+		);
+		$this->allowAutoLogin = true;
+	   parent::init();
+	}
+
+}

@@ -1,0 +1,37 @@
+<?php
+
+class CreateCalendar {
+	
+	private static $CREATE_CALENDAR = 'INSERT INTO calendar_data (USER_ID,CALENDAR_NAME,CALENDAR_DESCRIPTION,CALENDAR_COLOR,TIMEZONE)
+						VALUES(:USER_ID,:CALENDAR_NAME,:CALENDAR_DESCRIPTION,:CALENDAR_COLOR,:TIMEZONE)';
+
+	public static function createUserCalendar($model){
+		$connection = Yii::app()->db_calendar;
+
+		$transaction = $connection->beginTransaction();
+
+		try{
+
+			$insertCommand = $connection->createCommand(self::$CREATE_CALENDAR);
+
+			$insertCommand->bindParam(":USER_ID",$model->userId,PDO::PARAM_STR);			
+			$insertCommand->bindParam(":CALENDAR_NAME",$model->calendarName,PDO::PARAM_STR);
+			$insertCommand->bindParam(":CALENDAR_DESCRIPTION",$model->calendarDescription,PDO::PARAM_STR);
+			$insertCommand->bindParam(":CALENDAR_COLOR",$model->calendarColor,PDO::PARAM_STR);
+			$insertCommand->bindParam(":TIMEZONE",$model->timezone,PDO::PARAM_STR);
+			
+			$insertCommand->execute();
+
+			$transaction->commit();
+
+			return true;
+		
+		}catch(Exception $e){
+			Yii::log("CALENDAR_CREATION_ERROR : ".Yii::app()->user->name.$e,'system.db');
+			$transaction->rollback();
+			return false;
+		}
+
+	}
+
+}

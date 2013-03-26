@@ -1,0 +1,98 @@
+.containerbody{
+	margin-top: 1%;
+	width:100%;
+	height:600px;
+	
+}
+
+.calendarHeaderPanel {
+	width:90%;
+	height:40px;
+	margin-left:5%;
+	margin-top:1%;
+	margin-bottom:1%;
+	
+}
+
+.calendarHeaderPanel table{
+	width:100%;
+	margin:auto;
+}
+
+.calendarHeaderPanel table td{
+	padding-left:2%;
+	width:50%;
+	
+}
+
+.createbutton {
+	width:100px;
+	height:30px;
+	font-size:20px;
+	color:white;
+	border:1px solid #CE030A;
+
+	background-image: -ms-linear-gradient(top, #B10309 0%, #EC020A 50%, #CE030A 100%);
+	background-image: -moz-linear-gradient(top, #B10309 0%, #EC020A 50%, #CE030A 100%);
+	background-image: -o-linear-gradient(top, #B10309 0%, #EC020A 50%, #CE030A 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #B10309), color-stop(0.5, #EC020A), color-stop(1, #CE030A));
+	background-image: -webkit-linear-gradient(top, #B10309 0%, #EC020A 50%, #CE030A 100%);
+	background-image: linear-gradient(to bottom, #B10309 0%, #EC020A 50%, #CE030A 100%);
+}
+
+.createbutton:hover {
+	width:100px;
+	height:30px;
+	font-size:20px;
+	color:white;
+	border:1px solid #CE030A;
+
+	background-image: -ms-linear-gradient(top, #CE030A 0%, #EC020A 50%, #B10309 100%);
+	background-image: -moz-linear-gradient(top, #CE030A 0%, #EC020A 50%, #B10309 100%);
+	background-image: -o-linear-gradient(top, #CE030A 0%, #EC020A 50%, #B10309 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #CE030A), color-stop(0.5, #EC020A), color-stop(1, #B10309));
+	background-image: -webkit-linear-gradient(top, #CE030A 0%, #EC020A 50%, #B10309 100%);
+	background-image: linear-gradient(to bottom, #CE030A 0%, #EC020A 50%, #B10309 100%);
+
+	cursor:hand;
+	cursor:pointer;
+
+}
+
+.buttonList{
+	margin-top: 1%;
+	margin-bottom: 0%;
+	width:0px;
+	margin-left:40%;
+}
+
+.calendarTypeButtons{
+	width:75px;
+	height:30px;
+	background:#F8F6F2;
+	border:1px solid #E6E3E3;
+	color:#707070;
+	font-style:bold;
+
+	-webkit-box-shadow:#FFF7F7 0 1px 0 0;
+	-moz-box-shadow:#FFF7F7 0 1px 0 0;
+	box-shadow:#FFF7F7 0 1px 0 0;
+}
+
+.calendarTypeButtons:hover{
+	background:#EEEBE7;
+	cursor:pointer;
+	cursor:hand;
+}
+
+
+
+.ajax{
+	width:100%;
+	margin-top:1%;
+}
+
+.ajax table {
+	width:100%;
+}
+

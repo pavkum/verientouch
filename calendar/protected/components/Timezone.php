@@ -1,0 +1,22 @@
+<?php
+
+class Timezone {
+	
+	public static function getTimezones(){
+		$timezones = Yii::app()->db->createCommand()
+				->select('ZONE_NAME')
+				->from('timezone_list')
+				->queryAll();
+
+		$timezoneList = array();
+
+		foreach($timezones as $timezone){
+
+
+			array_push($timezoneList,$timezone['ZONE_NAME']);
+		}
+
+		return $timezoneList;
+	}
+
+}

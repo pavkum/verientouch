@@ -1,0 +1,18 @@
+#container{
+	width:80%;
+	margin-left:10%;
+	padding-top:2%;
+	
+}
+
+#validationheader{
+	margin-left:0%;
+	height:30px;
+	font-style:bold;
+	font-size:20px;
+	background:black;
+	color:white;
+	padding-top:5px;
+	padding-left:10%;
+	
+}

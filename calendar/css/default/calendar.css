@@ -1,0 +1,137 @@
+.containerbody{
+	margin-top: 1%;
+	width:100%;
+	height:500px;
+
+}
+
+.containerbody table{
+	width:100%;
+	height:90%;
+	//border:1px solid blue;
+
+}
+
+.sidebar{
+	width:15%;
+	height:90%;
+}
+
+.calendarbody {
+	width:70%;
+	//height:100px;
+	overflow:auto;
+	//font-size:30px;
+	//border-left:1px solid black;
+	//border-right:1px solid black;
+}
+
+.buttonList{
+	margin-top: 1%;
+	margin-bottom: 0%;
+	width:0px;
+	margin-left:60%;
+}
+
+.calendarTypeButtons{
+	width:75px;
+	height:30px;
+	background:#F8F6F2;
+	border:1px solid #E6E3E3;
+	color:#707070;
+	font-style:bold;
+
+	-webkit-box-shadow:#FFF7F7 0 1px 0 0;
+	-moz-box-shadow:#FFF7F7 0 1px 0 0;
+	box-shadow:#FFF7F7 0 1px 0 0;
+}
+
+.calendarTypeButtons:hover{
+	background:#EEEBE7;
+	
+	cursor:pointer;
+	cursor:hand;
+}
+
+#controls{
+	width:70%;
+	height:100%;
+	margin:0 auto;
+	valign:top;
+	
+}
+
+#controls table{
+	cellspacing:0;
+	cellpadding:0;
+	height:0;
+}
+
+#createButton{
+	width:80%;
+	margin-left:10%;
+	margin-top:15%;
+	margin-bottom:2%;
+	height: 30px;
+	color:white;
+	font-size:22px;
+	font-style:bold;
+
+	border: 1px solid #DD0404;
+
+	background-image: -webkit-linear-gradient(top, #C40F05 0%, #F50C00 100%);
+	background-image: -ms-linear-gradient(top , #C40F05 0%, #F50C00 100%);
+	background-image: -moz-linear-gradient(top , #C40F05 0%, #F50C00 100%);
+	background-image: -o-linear-gradient(top , #C40F05 0%, #F50C00 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #C40F05), color-stop(1, #F50C00));
+
+	-webkit-box-shadow:#E1E1E1 0 1px 0 0;
+	-moz-box-shadow:#FFF7F7 0 1px 0 0;
+	box-shadow:#FFF7F7 0 1px 0 0;
+}
+
+#createButton:hover{
+	background:#DD0404;
+	cursor:hand;
+	cursor:pointer;
+}
+
+.Month {
+	margin-top:0px;
+}
+
+.Month table{
+	//border: 1px solid black;
+}
+
+.monthheader td{
+	text-align:center;
+	width:50px;
+	height:30px;
+	background:#FCF1EE;
+}
+
+.monthdays td{
+	text-align:left;
+	vertical-align:top;
+	width:50px;
+	height:70px;
+	
+}
+
+.presentMonthDays {
+	background:#FAFAFA;
+	color:#848484;
+	font-size:20px;
+}
+
+.previousMonthDays {
+	background:#F2F2F2;
+	color:#D8D8D8;
+	font-size:20px;
+}
+
+.ajax {
+	//height:400px;
+	//padding:0;
+}

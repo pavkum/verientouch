@@ -1,0 +1,18 @@
+<?php
+class EBackButton extends CWidget {
+ 
+    public $width = "150px";
+ 
+    public function run() {
+ 
+        echo CHtml::button('Back', array(
+            'name' => 'btnBack',
+            'class' => 'uibutton loading confirm',
+            'style' => 'width:'.$this->width.';',
+            'onclick' => "history.go(-1)",
+                )
+        );
+    }
+ 
+}
+?>

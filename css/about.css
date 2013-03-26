@@ -1,0 +1,34 @@
+#wrapper{
+	margin:0 auto;	
+	width:100%;
+	height:450px;
+	background:white;
+
+}
+
+#about{
+	padding-top:2%;
+	margin-left:10%;
+}
+
+#seperator{
+	width:90%;
+	height:2px;
+	margin-top:2%;
+	margin-bottom:2%;
+	background:#E9EBFC;
+}
+
+.developerInfo p{
+	width:60%;
+	margin-left:10%;
+}
+
+.developerPhoto{
+	margin-left:2%;
+}
+
+.developerInfoTable{
+	width:90%;
+	margin: 0 auto;
+}

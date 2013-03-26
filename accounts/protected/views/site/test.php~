@@ -1,0 +1,10 @@
+<?php
+
+	$Test = "sample"
+
+?>
+<div>
+
+$Test
+
+</div>

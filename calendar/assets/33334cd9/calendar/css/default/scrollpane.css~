@@ -1,0 +1,44 @@
+.scrollpanel{
+	height:350px;
+	overflow:auto;
+}
+
+.today-container{
+	//height:400px;
+	//overflow:auto;
+	margin-top:-1%;
+}
+
+
+
+
+.dayHeader {
+	text-align:left;
+	color:white;
+	width:99%;
+	height:25px;
+	font-size:20px;
+	padding: 5px 0 5px 10px;
+	background:#BDBDBD;
+	border-radius:5px;
+}
+
+.hourColumn {
+	text-align:center;
+	width:40px;
+	background:#F2F2F2;
+	color:#BDBDBD;
+	height:40px;
+	font-size:20px;
+	border-radius:5px;
+	
+}
+
+.EventColumn {
+	height:40px;
+	border:1px solid #BDBDBD;
+	color:#848484;
+	border-radius:5px;
+	//font-size:20px;
+
+}

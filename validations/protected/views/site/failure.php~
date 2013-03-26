@@ -1,0 +1,13 @@
+<?php
+
+$this->pageTitle=Yii::app()->name . ' - Error verifying Email';
+
+?>
+
+<div id="validationheader">Email Verified successfully</div>
+<div id="container">
+	<p> Some where something went wrong. Please read faqs<p>
+	<br>
+	<p> Please <?php echo CHtml::link('here',array('signup')); ?> here to contact us in case of any queries </p>
+
+</div>

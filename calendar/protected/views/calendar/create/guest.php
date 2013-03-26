@@ -1,0 +1,144 @@
+<table class="userAddTable">
+
+	<script>
+		$(document).ready(function () {
+			$('#guestEmail').keyup( function(e) {
+				e.stopPropagation();
+		        	 e.preventDefault();
+				if(e.keyCode == 13) {
+					return addGuestEmail();
+				}
+			});
+
+
+		});
+
+			var guestMap = new Hashtable();
+	</script>
+
+	<script>
+
+	function noEnter(e){
+
+	      var event = e || window.event;
+	      if (event.keyCode == 13){
+        	 event.preventDefault();
+		 alert('default');
+        	 return false;
+      		}
+	}
+
+	</script>
+	
+	<tr>
+		<td>
+			<?php echo CHtml::textField('guestEmail', '' ,array(
+				'class' => 'vTextField',
+				'onsubmit'=> 'preventDefault()',
+			)); ?>
+
+			<?php echo $form->hiddenField($model,'guestArray',array(
+							'id' => 'guestArray',
+			));?>
+		</td>
+
+		<td>
+			<?php echo CHtml::button('Add',array(
+				'class' => 'vButton',
+				'onclick' =>'addGuestEmail()'
+			)); ?>
+
+			<script>
+				function addGuestEmail() {
+					var guestEmail = $('#guestEmail').val();
+
+					if(isValidEmail(guestEmail) && checkIfEmailAlreadyAdded(guestEmail)){
+						var table = document.getElementById('userEmail');
+						var row = table.insertRow(0);
+						var columnUserEmail = row.insertCell(0);
+						var removeButton = row.insertCell(1);
+
+						var button = document.createElement('input');
+						button.type = 'button';
+						button.value = 'Remove';
+						button.id = guestEmail + '-button';
+						button.name = 'remove';
+						button.className = 'removeButton';
+						button.onclick = function() {
+									var userElement = document.getElementById(guestEmail);
+									userElement.parentNode.removeChild(userElement);
+									guestMap.remove(guestEmail);		
+									return false;
+									};
+
+						row.className = 'userEmailRow';
+						row.id = guestEmail;
+						columnUserEmail.className = 'userEmailColumn';
+						columnUserEmail.innerHTML = guestEmail;
+						removeButton.appendChild(button);
+
+						guestMap.put(guestEmail,guestEmail);
+						updateGuestEmailList();
+
+						$('#guestEmail').val('');
+						$('#errorGuest').text('');
+
+					}
+
+					return false;
+				}
+
+				function isValidEmail(email) {
+					var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+					
+					if(regex.test(email)) {
+						return true;
+					}else{
+						$('#errorGuest').text('Enter valid Email address');
+						return false;
+					}
+
+					
+				}
+
+				function checkIfEmailAlreadyAdded(email) {
+
+					if(!guestMap.containsKey(email)){
+						return true;
+					}else{
+						$('#errorGuest').text('Email address already entered');
+						return false;
+					}
+					
+				}
+
+				function updateGuestEmailList(){
+					var guestEmailArray = guestMap.values();
+					
+					$('#guestArray').val(guestEmailArray);
+					return false;
+				}
+
+			</script>
+		</td>
+
+		
+	</tr>
+
+	<tr>
+		<td>
+			<div id="errorGuest" style="color:red; text-align:center">
+
+			</div>
+
+		</td>
+
+
+	</tr>
+
+</table>
+
+<table id="userEmail">
+
+
+</table>

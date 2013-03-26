@@ -1,0 +1,75 @@
+<table class="advanced">
+
+	<tr>
+
+		<td> <?php echo $form->labelEx($model,'eventPriority'); ?> <td>
+
+		<td>
+			<?php echo $form->dropDownList($model,'eventPriority',$model->getEventPriority(),
+				array(
+					'empty'=>'Priority',
+					'encode'=>1,
+					'disabled'=>0,
+					'promt'=>1,
+					'class'=>'dropDownList'
+				)
+			); ?>
+		</td>
+
+	</tr>
+
+
+	<tr>
+
+		<td> <?php echo $form->labelEx($model,'eventColor'); ?> <td>
+
+		<td>
+			<table>
+				<tr>
+					<?php echo $form->hiddenField($model,'eventColor',array('style'=>'height:30px;')); ?>
+				</tr>
+
+				<tr>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:red;border:1px solid red',
+									'onclick' => 'choosenColor(red)',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:green;border:1px solid green',
+									'onclick' => 'choosenColor(green)',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:#0101DF;border:1px solid #0101DF',
+									'onclick' => 'choosenColor(#0101DF)',
+								)); ?> </td>
+
+					<td> <?php echo CHtml::button('',array(
+									'class' => 'eventColorChooser',
+									'style' => 'background:#21610B;border:1px solid #21610B',
+									'onclick' => 'choosenColor(#21610B)',
+								)); ?> </td>
+
+				</tr>
+
+
+				<script>
+					function choosenColor(color) {
+						alert(color);
+						$('#eventColor').val(color);
+						return false;
+					}
+
+				</script>
+
+			</table>
+		</td>
+
+	</tr>
+
+</table>
